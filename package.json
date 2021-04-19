@@ -6,8 +6,10 @@
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server"
-  },
+    "server": "hexo server",
+    "new": "hexo new",
+    "publish": "hexo publish"
+},
   "hexo": {
     "version": "5.4.0"
   },
