@@ -9,7 +9,7 @@
     "server": "hexo server",
     "new": "hexo new",
     "publish": "hexo publish"
-},
+  },
   "hexo": {
     "version": "5.4.0"
   },
