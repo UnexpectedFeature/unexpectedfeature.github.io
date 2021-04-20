@@ -205,7 +205,9 @@ public void SwapBuffer(int topBuffer) {
     );
 }
 ```
+
 Naming the parameter `topBuffer` just to remind me of being the index of the buffer that would be on the top after the execution wasn't really that necessary, and it could also be particularly misleading. A bit of documentation would have solved everything nicely. There is nothing else to see here. We can now go to the magic `DrawBuffer(int)` method.
+
 ```c#
 public void DrawBuffer(int bufferIndex) {
     var bufferPos = Buffers[bufferIndex].BufferPosition;//cache of the buffer position
@@ -251,4 +253,21 @@ public void DrawBuffer(int bufferIndex) {
 
 > Woah, what a piece of ~~shit~~ art! 
 
-By the standards of this project, the fact that there are actually lines of comments means something is wrong.
+By the standards of this project, the fact that there are actually lines of comments clearly meant that something was wrong.
+
+#### Exploring the DrawBuffer method
+The DrawBuffer methos is divided in 2 main parts.
+The first part creates a copy of the buffer that will be written in memory, then does a bit of math to calculate whatever ASCIISprite will need to be rendered first, then uses their position to transform the sprite coordinates to the screen ones (like a real 3D game engine would do) and writes the buffer.
+This is actually not a bad idea. The only thing I would do differently today would be to not create the intermediate buffer and directly write to it. (More on this later)
+
+The second part is there just to go around the C# console library limitations. And this is one of the biggest issues on this small project.
+
+C# console methods support just one combination of background and foregorund color for each write instruction. If you want multiple colors you will have to make multiple calls. 
+
+> Each one of theese calls have a big overhead.
+
+This right here is the elephant in the room.
+
+```c#
+
+```
