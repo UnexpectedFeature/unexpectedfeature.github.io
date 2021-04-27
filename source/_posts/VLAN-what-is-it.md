@@ -1,17 +1,19 @@
 ---
-title: VLAN, what is it?
-date: 2021-04-19 12:34:45
+title: 'VLAN, what is it?'
 author: MrFastwind
 tags:
- - Networking
- - LAN
+  - Networking
+  - LAN
+date: 2021-04-19 12:34:45
 ---
+
 
 VLAN is the acronym for **Virtual Local Area Network**, a virtual network within the physical one; this technology (that has existed for quite some time) permits to virtualize and multiplex multiple network on the same infrastructure.
 
 ## How does it works?
 
 This technology is locate between the second and third layer of the ISO/OSI; it works by tagging the frame of the data link layer with a VID (VLAN ID) that define in which virtual network the frame should be routed.
+![VLAN Frame](VLAN_Frame.png)
 The VLAN Header has 4 Bytes size, this reduce the max payload dimension; to avoid this situation it's usual to enable **Jumbo Frames** that use 9000 Bytes for payload.
 
 ## Configurations
