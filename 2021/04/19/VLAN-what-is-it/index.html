@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="VLAN is the acronym for Virtual Local Area Network, a virtual network within the physical one; this technology (that has existed for quite some time) permits to virtualize and multiplex multiple netwo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VLAN, what is it?">
+<meta property="og:url" content="https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/index.html">
+<meta property="og:site_name" content="UnexpectedFeature">
+<meta property="og:description" content="VLAN is the acronym for Virtual Local Area Network, a virtual network within the physical one; this technology (that has existed for quite some time) permits to virtualize and multiplex multiple netwo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/VLAN_Frame.png">
+<meta property="article:published_time" content="2021-04-19T12:34:45.000Z">
+<meta property="article:modified_time" content="2021-04-27T14:41:15.640Z">
+<meta property="article:author" content="UnexpectedFeature">
+<meta property="article:tag" content="Networking">
+<meta property="article:tag" content="LAN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/VLAN_Frame.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>VLAN, what is it?</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/UnexpectedFeature">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2021/04/19/What-is-UnexpectedFeature/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&text=VLAN, what is it?"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&title=VLAN, what is it?"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&is_video=false&description=VLAN, what is it?"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=VLAN, what is it?&body=Check out this article: https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&title=VLAN, what is it?"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&title=VLAN, what is it?"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&title=VLAN, what is it?"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&title=VLAN, what is it?"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&name=VLAN, what is it?&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&t=VLAN, what is it?"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-does-it-works"><span class="toc-number">1.</span> <span class="toc-text">How does it works?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configurations"><span class="toc-number">2.</span> <span class="toc-text">Configurations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Differences"><span class="toc-number">3.</span> <span class="toc-text">Differences</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        VLAN, what is it?
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">MrFastwind</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-04-19T12:34:45.000Z" itemprop="datePublished">2021-04-19</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/LAN/" rel="tag">LAN</a>, <a class="tag-link-link" href="/tags/Networking/" rel="tag">Networking</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>VLAN is the acronym for <strong>Virtual Local Area Network</strong>, a virtual network within the physical one; this technology (that has existed for quite some time) permits to virtualize and multiplex multiple network on the same infrastructure.</p>
+<h2 id="How-does-it-works"><a href="#How-does-it-works" class="headerlink" title="How does it works?"></a>How does it works?</h2><p>This technology is locate between the second and third layer of the ISO/OSI; it works by tagging the frame of the data link layer with a VID (VLAN ID) that define in which virtual network the frame should be routed.<br><img src="/2021/04/19/VLAN-what-is-it/VLAN_Frame.png" alt="VLAN Frame"><br>The VLAN Header has 4 Bytes size, this reduce the max payload dimension; to avoid this situation it’s usual to enable <strong>Jumbo Frames</strong> that use 9000 Bytes for payload.</p>
+<h2 id="Configurations"><a href="#Configurations" class="headerlink" title="Configurations"></a>Configurations</h2><p>Tagging frames is a done automatically by switches when receiving and sending frames (even PCs can, but is not recommended for security reason); when a frame reach a port, the switch read the port configuration for which rule is set and decide where to reroute the frame; then it read the next port configuration and apply the rule.<br>The possible Rules are:</p>
+<ul>
+<li><strong>Access</strong>/<strong>Untagged</strong>: Every frame in the net is <strong>untagged</strong> and doesn’t accept any tagged frames, every frame accepted are then tagged with a VID.  </li>
+<li><strong>Trunk</strong>/<strong>Tagged</strong>: frames can be <strong>tagged</strong> or not, the port accept tagged frame if their VID is accepted and untagged if the default is defined.</li>
+</ul>
+<p>Usually <strong>Access</strong> Are used for the communication between PCs and <strong>Trunk</strong> for the <strong>Back-Bone</strong> communication.</p>
+<h2 id="Differences"><a href="#Differences" class="headerlink" title="Differences"></a>Differences</h2><p>Depending on the manufacturer of the switch, name and configurations may change; in example:</p>
+<ul>
+<li><strong>Cisco</strong> use the Access/Trunk as naming standard, and define which VLAN is registered in a port.</li>
+<li><strong>HPE</strong> use Tagged/Untagged as naming convention, and define for every VLAN which port can access.  </li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/UnexpectedFeature">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-does-it-works"><span class="toc-number">1.</span> <span class="toc-text">How does it works?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configurations"><span class="toc-number">2.</span> <span class="toc-text">Configurations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Differences"><span class="toc-number">3.</span> <span class="toc-text">Differences</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&text=VLAN, what is it?"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&title=VLAN, what is it?"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&is_video=false&description=VLAN, what is it?"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=VLAN, what is it?&body=Check out this article: https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&title=VLAN, what is it?"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&title=VLAN, what is it?"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&title=VLAN, what is it?"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&title=VLAN, what is it?"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&name=VLAN, what is it?&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://unexpectedfeature.github.io/2021/04/19/VLAN-what-is-it/&t=VLAN, what is it?"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021
+    UnexpectedFeature
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/UnexpectedFeature">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
