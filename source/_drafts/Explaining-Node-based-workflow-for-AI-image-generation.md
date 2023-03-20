@@ -7,15 +7,28 @@ tags:
 - Machine Learning
 ---
 
-#### Note
+## **Before we begin**
 
-*I will be using ComfyUI as basis but the same concepts apply to Invoke AI and a1111 UIs. This is basically how they handle stuff under the hood.*
+{% blockquote %}
+*I will be using ComfyUI as basis for pictures but the same concepts apply to Invoke AI and a1111 UIs. This is basically how they handle stuff under the hood.*
+
+*Also, do keep in mind that I'm not an expert on the subject by any means. I just happen to have spent a while scavenging the web for documentation and overall trying to understand how AI-image-generation works. My field of work is computer graphics and game engines. A bit distant from Machine Learning.*
+{% endblockquote %}
+
+*If you have suggestions/feedback or want to correct me on something, feel free to reach out to me.*
 
 ## **So, what exactly are nodes?**
 
+If you're coming from one of the usual UIs for AI image generation, you might be wondering what the heck are nodes and why are they so interesting for some peoples.
+The truth is, that unless you want to delve deeper into how an image gets generated, or you need more control over the entire process, you don't need to know anything about nodes.
+
+But if you are interested in learning more about how AI image generation works, or you want to have more control over the entire process, then by all means, keep on reading...
+
+### In short
+
 - Nodes are just a clear representation of the flow of data when generating an image using AI. 
 - The advantage of using nodes it that you can thoroughly customize the entire image generation process by yourself. You have sampler nodes, conditioning nodes, input nodes and output nodes.
-- Without going into explaining one by one all possible nodes (otherwise good luck, this would be a gigantic wall of text), I can give you a basic overview of how the basic stuff we do in a1111 or invoke ai work under the hood.
+- Without going into explaining one by one all possible nodes and combinations (good luck, this would be a gigantic wall of text, more than it is already), I can give you a basic overview of how the basic stuff we do in a1111 or invoke ai work under the hood.
 
 ## **Checkpoints:**
 
@@ -26,9 +39,15 @@ Also known as models, they need to be loaded and unpacked to memory to be used. 
 
 ![Checkpoint Loader Node](CheckpointLoader.png)
 
+### CLIP Model
+
 A CLIP model is a Text Encoder, in layman terms it the black box that accepts your input and translates it to the model itself so that it can generate what you want to see.
 
+### The actual checkpoint
+
 The model itself takes a starting point (in case of txt2img, a randomized noise image, in case of img2img a "blurred", more noisy version of your starting image), and starts denoising. By progfressively removing noise from the image in a way that statistically represents an image that corresponds to your input (positive conditioning) and resembles less your negative input (negative conditioning) an image is generated in latent space.
+
+### VAE Model
 
 A VAE model then clears the latent space and returns you an image. You can think of this like the final step of developing an image in the old days, the last bath before pulling the photograph out and letting it dry.
 
@@ -80,6 +99,8 @@ This is conditioning but in the opposite way. You can use it to tell the model w
 
 Everything I said about conditioning applies to negative conditioning as well. Only that with negative conditioning the model will try to have the derived vectors from the tokens to be as distant as possible from the current latent image.
 
+### Negative conditioning Myths
+
 Let's try to dispel some myths about negative conditioning:
 
 - `bad hands` doesn't works as well as you think. `bad` is a token and `hands` is another. The model doesn't have a clue about what `bad hands` are on their own. using `(hands)` will result in more or less the same reuslt, with 1 less token.
@@ -90,14 +111,57 @@ Let's try to dispel some myths about negative conditioning:
 
 *Condensing informations into a single token*
 
+![Negative Conditioning Node with Embeddings](EmbeddingNegNode.png)
+
 Also called "Textual Inversion Embeddings".
 
 Embeddings are a way to condense a part of your conditioning into a single token. They are not a collection of tokens per se, rather a definition of where your concept is placed in the latent space.
 
+### Under the hood
+
 Imagine again the latent space, there are a bunch of zones (or layers) that define specific features, like the eyes, the nose, the mouth, the hair, the clothes, the background, etc.
 Embeddings are a way to tell the model "I want to see this in the image, and I want it to be as close as possible to these numbers". It does this by offsetting specific groups of values in the latent space.
+
+### Embeddings in practice
 
 The result is a quick way to only consume a single token and still have the same effect of a lof of tokens used as conditioning. They are now really popular in negative prompts to strongly condition the model away from `bad hands`, `bad anatomy`, `bad composition` and so on...
 
 They can, of course, also be used as positive conditioning, but that job is often left to LoRAs nowadays.
+
+## **LoRAs**
+
+*Low-Rank Adaptations*
+
+![LoRA Node](LoRaNode.png)
+
+### Fast and small
+
+LoRAs are a recetly introduced technique for fine-tuning a model on the fly, without the need of having hundred of images and without needing long train times and huge file sizes, compared to DreamBooth models.
+
+### How do they work?
+
+A model is basically a gigantic matrix of numbers. Fine tuning changes some of those numbers in the matrix to make the model better at generating images that are similar to the ones you used for fine tuning. By saving only the difference between the original model and the model after the fine tuning, a LoRA will be both small and fast to be applied. Also, you can easily apply multiple of them at the same time and they can work across multiple models (with some caveats, for example: a LoRA trained over anime Images will often not play nice with a model that tries to output photorealistic images).
+
+### Actual under the hood?
+
+Nah. This is currently the easiest to understand explanation I can give you. I have a decent idea of how they work under the hood, but I do not think I can explain it in a way that is both easy to understand and accurate. So I'll not go into details for now.
+
+### LoRAs in practice
+
+When you apply a lora, you basically apply the fitting over the model currently loaded in memory. Some LoRAs will work best if the positive/negative conditioning contain certain tokens. Others will work fine as long as they are loaded. Some will be really strong, other will be much more lenient. It all depends on how the LoRA was trained. As ususal, the best way to find out is to experiment and to read the readme left by the author (if present).
+
+## Pipelines
+
+*How basic workflows actually work*
+
+So far we adressed the basic  building blocks that we use in any UI for interacting with the model. Let's now take a look at how some of the basic things we usually do actually work under the hood.
+
+### Plain txt2img pipeline
+
+![A normal txt2img straight pipeline](txt2imgPipeline.png)
+
+Everyone should be familiar with this, it's by far the most basic way to actually obtain an image. In fact, this is the bare minimum setup you need to get an image from the model.
+
+Let's look at it step by step, or rather, node by node:
+
 
