@@ -102,6 +102,7 @@ ignore:
 ## Themes: https://hexo.io/themes/
 # theme: landscape
 theme: cactus
+theme_style: dark
 ## confing on file theme
 
 # Deployment
