@@ -1,3 +1,6 @@
 [submodule "hexo-theme-cactus"]
 	path = themes/cactus
 	url = https://github.com/UnexpectedFeature/hexo-theme-cactus.git
+[submodule "themes/hexo-theme-aero-dual"]
+	path = themes/hexo-theme-aero-dual
+	url = https://github.com/levblanc/hexo-theme-aero-dual.git
