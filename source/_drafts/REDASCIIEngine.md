@@ -266,8 +266,5 @@ C# console methods support just one combination of background and foregorund col
 
 > Each one of theese calls have a big overhead.
 
-This right here is the elephant in the room.
+This right here is the elephant in the room. The C# overhead for operating with console buffers and with the console in general is really too much to properly support this type of applications.
 
-```c#
-
-```
