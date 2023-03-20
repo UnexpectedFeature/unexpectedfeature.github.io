@@ -164,4 +164,10 @@ Everyone should be familiar with this, it's by far the most basic way to actuall
 
 Let's look at it step by step, or rather, node by node:
 
-
+1. The CheckpointLoader node loads the model and the associated CLIP model and if available a VAE model too.
+2. Two CLIPTextEncode nodes are used, one for supplying the positive conditioning and one for the negative conditioning. They both use the CLIP model loaded in the previous step and output a conditioning.
+3. An empty latent image is created at the specificed resolution.
+4. Both conditionings are supplied alongside the model and the empty latent image to the sampler, that actually adds noise and initializes the image and starts the generation process.
+5. A VAE gets loaded because we didn't have one before.
+6. the VAEDecode node takes the latent samples from the sampler and uses the VAE model to decode the latent samples into an image.
+7. Said image get's finally displayed as a preview (optionally also saved to the disk.)
