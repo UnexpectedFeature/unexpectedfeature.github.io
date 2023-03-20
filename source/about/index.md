@@ -15,6 +15,6 @@ My interests cover System Virtualization, Systems Integration, DevOps, Automatio
 
 ### [Samuele Lorefice](https://github.com/SamueleLorefice)
 
-I'm a self-taught Software/Hardware Developer, 3D Modeler, and Videogame Enthusiast.
-I like to tinker around in C++/C#/OpenGL, making small projects and dreaming about creating games. I sometimes design PCBs and do Hardware stuff, be it arduino or proper AVR programming.
+I'm a self-taught Software/Hardware Developer, 3D Modeler, and Videogame Enthusiast. Currently working as Lead Game Dev for a small indie company.
+I like to tinker around in C++/C#/OpenGL, making small projects and dreaming about creating my own games. I sometimes design PCBs and do Hardware stuff, be it arduino or proper AVR programming.
 Expect my posts to be about game programming, game engine architectures, windows software dev and occasional rants (because once in a while, it's needed).
