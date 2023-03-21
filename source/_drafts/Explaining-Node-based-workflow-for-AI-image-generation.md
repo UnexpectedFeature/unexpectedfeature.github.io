@@ -171,3 +171,54 @@ Let's look at it step by step, or rather, node by node:
 5. A VAE gets loaded because we didn't have one before.
 6. the VAEDecode node takes the latent samples from the sampler and uses the VAE model to decode the latent samples into an image.
 7. Said image get's finally displayed as a preview (optionally also saved to the disk.)
+
+### Adding LoRAs to the mix
+
+![A txt2img pipeline with LoRAs](txt2img+LoraPipeline.png)
+
+Adding LoRAs to the mix is pretty simple. We add a LoRA node between the CheckpointLoader and the CLIPTextEncode nodes. The LoRA node will load the LoRA and apply it to the CLIP model before the CLIPTextEncode nodes are used. Additionally it will also apply the LoRA to the actual model.
+
+![A LoRA node being loaded on top of the result of the previous lora node](LoRAchain.png)
+
+Multiple LoRAs? just chain multiple nodes together.
+
+### HiresFix
+
+If you've been generating images for a while, you probably heard someone mention "HiResFix". It's a technique that allows you to generate images at a higher resolution than the one the model was trained on. Most models are trained at 512x512 images, some at 768x768 but what if you want to go higher? Well, something like this might happen:
+
+![A 1280x768 image generated with a 512x512 model](NoHiResFix.png)
+
+You can clearly see how there are actually 2 images there, and the model doesn't really know how to blend this all together. This is where HiResFix comes in.
+
+Here's how HiResFix looks like in a node based editor:
+![A 1280x768 image generated from an upscaled 640x384 latent image (HiResFix)](txt2imgHiresFix.png)
+
+Okay, this might look overwhelming at first, but it's actually pretty simple. Let's break it down:
+
+- The txt2img block (in blue) is the same as the one we saw before. The only difference is that we are using a 640x384 empty latent image instead of a 512x512 one. This is because twe will then upscale that to a factor of 2 to get a 1280x768 image at the end.
+
+- The yellow block is totally optional, just me fetching what the image looked like before going trough the HiResFix process.
+
+- The green block is where the magic happens. 
+  - The latent image resulting from the txt2img process is now sent trough a LatentUpscale node. 
+  - This node is going ot upscale the latent image by a factor of 2. This means that the 640x384 latent image will become a 1280x768 latent image. 
+  - We then feed this image to the sampler, wichi will add noise (notice the denoise parameter) and iterate over it. But because now it has a starting point (and the denoise value is not too high) it will just upscale the image and add detail instead of getting confused and spitting out 2 images one next to eachother.
+- We then decode the image as usual and we get a nice 1280x768 image.
+
+Notice that some details changed. This is depending on the denoise value. You can thing of this as how much from 0 to 1 we are going to blur the image. If you set it to 0, the image will be exactly the same as the one we started with. If you set it to 1, the image will be completely blurred and we will end up with a completely new image. The sweet spot is somewhere in the middle, but it depends on the model and the image you are generating. Usually around 0.55-0.65 is where it works best.
+
+And that's it for how HiResFix works. It's not complicated, but it can feel overwhelming just by looking at it in a node based enviroment.
+
+And this goes to show that even though the node based enviroment is very powerful, it's not always the best way to work with this kind of stuff.
+
+## The real downside of node based editors
+
+As soon as complexity kicks in, it becomes a rat's nest. It can become a nightmare to work with and you can end up with a lot of headaches when trying to understand why something doesn't work.
+
+But its a good way to play around with stuff and understand how it works internally. Also if you ever decide to work with it by using scripting, it will be really easy to reconstruct pipelines there.
+
+And if you don't kn ow how to program, I guess is a good way to prototype a good pipeline or achieve results otherwise impossible with the standard UIs.
+
+## Conclusion
+
+This became a really long article. I hope you learned something from it. This has also been a good excuse for myself to go slightly deeper into how some stuff works internally. I'd love to expand on this in the future, maybe with another article about more advanced techniques on node based image generation, but for now I think this is enough. Till next time... have fun generating images!
