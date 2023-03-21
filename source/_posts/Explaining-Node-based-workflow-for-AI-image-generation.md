@@ -1,11 +1,13 @@
 ---
 title: Explaining Node-based workflow for AI image generation
 author: Samuele Lorefice
-tags: 
-- AI
-- Stable Diffusion
-- Machine Learning
+tags:
+  - AI
+  - Stable Diffusion
+  - Machine Learning
+date: 2023-03-21 01:35:04
 ---
+
 
 ## **Before we begin**
 
