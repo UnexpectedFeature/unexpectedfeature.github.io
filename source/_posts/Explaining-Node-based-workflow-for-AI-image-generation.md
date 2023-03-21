@@ -22,20 +22,19 @@ date: 2023-03-21 01:35:04
 ## **So, what exactly are nodes?**
 
 If you're coming from one of the usual UIs for AI image generation, you might be wondering what the heck are nodes and why are they so interesting for some peoples.
-The truth is, that unless you want to delve deeper into how an image gets generated, or you need more control over the entire process, you don't need to know anything about nodes.
+The truth is that, unless you want to delve deeper into how an image gets generated or you need more control over the entire process, you don't need to know anything about nodes.
 
 But if you are interested in learning more about how AI image generation works, or you want to have more control over the entire process, then by all means, keep on reading...
 
 ### In short
 
-- Nodes are just a clear representation of the flow of data when generating an image using AI. 
-- The advantage of using nodes it that you can thoroughly customize the entire image generation process by yourself. You have sampler nodes, conditioning nodes, input nodes and output nodes.
-- Without going into explaining one by one all possible nodes and combinations (good luck, this would be a gigantic wall of text, more than it is already), I can give you a basic overview of how the basic stuff we do in a1111 or invoke ai work under the hood.
+- Nodes are just a clear representation of the flow of data when generating an image using AI.
+- The advantage of using nodes it that you can thoroughly customize the entire image generation process by yourself. You have sampler nodes, conditioning nodes, input nodes, output nodes...
+- Without going into explaining one by one all possible nodes and combinations (good luck, this would be a gigantic wall of text, more than it is already), I can give you a basic overview of how the basic stuff we do in a1111/invoke ai work under the hood.
 
 ## **Checkpoints:**
 
 *Or: what models are actually involved in generating an image*
-
 
 Also known as models, they need to be loaded and unpacked to memory to be used. Each checkpoint can optionally also contain an integrated CLIP and VAE model baked into itself.
 
@@ -43,15 +42,15 @@ Also known as models, they need to be loaded and unpacked to memory to be used. 
 
 ### CLIP Model
 
-A CLIP model is a Text Encoder, in layman terms it the black box that accepts your input and translates it to the model itself so that it can generate what you want to see.
+A CLIP model is a Text Encoder, in layman terms its the black box that accepts your input and translates it to the model itself, so that it can generate an image containing what you want to see.
 
 ### The actual checkpoint
 
-The model itself takes a starting point (in case of txt2img, a randomized noise image, in case of img2img a "blurred", more noisy version of your starting image), and starts denoising. By progfressively removing noise from the image in a way that statistically represents an image that corresponds to your input (positive conditioning) and resembles less your negative input (negative conditioning) an image is generated in latent space.
+The model itself takes a starting point (in case of txt2img, a randomized noise image; in case of img2img a "blurred", more noisy version of your starting image), and starts denoising. By progressively removing noise from the current image in a way that statistically represents an image that resembles more your positive input (positive conditioning) and less your negative input (negative conditioning), it slowly converges to an image in "latent space".
 
 ### VAE Model
 
-A VAE model then clears the latent space and returns you an image. You can think of this like the final step of developing an image in the old days, the last bath before pulling the photograph out and letting it dry.
+A VAE model then clears the latent space and returns you an image. You can think of this like the final step of developing an photograph in the old days, the last bath to permanently fix the colors before pulling it out and letting it dry.
 
 ## **Latent Space**
 
@@ -59,11 +58,13 @@ A VAE model then clears the latent space and returns you an image. You can think
 
 Latent Space is a term that will come out multiple times during this read, so let's take a moment to explain what it really is.
 
-In terms of a Stable-Diffusion model, you can thing of this as a canvas that the model uses to draw the image onto. But it's only a bunch of numbers really, and it's up to the model and the sampler to interpret them accordingly.
+In terms of a Stable-Diffusion model, you can think of this as a canvas that the model uses to draw the image onto. But it's only a bunch of numbers really, and it's up to the model and the sampler to interpret them accordingly.
 
-Additionally, this "image" is not a single layer, but muliple of them. And then applying conditioning over the current latent space, step after step, the decoded image that is generated from it is going to be more and more similar to the conditioning you set at the beginning.
+Additionally, this "image" is not a single layer, but muliple of them. And by applying conditioning over the current latent space, step after step, the decoded image that is generated from it, is going to be more and more similar to the conditioning you set at the beginning.
 
 When you start generating an image from a text prompt only, you initialize the latent space with a bunch of random values. The random values are chosen thanks to a seed, allowing repeatability.
+
+When generating from an image the latentspace is initialized with data from your image after the VAE model has encoded it into latent space.
 
 ## **Conditioning:**
 
@@ -81,7 +82,9 @@ The words you input are going to be split into tokens, and each token is going t
 
 *The vocabulary of the model*
 
-But what exactly is a token? A token is generally a set of characters that the CLIP model has associated a meaning to. The most basic token you always while writing a conditioning is usually the ',' comma. The CLIP model has been trained to understand that a comma is a separator between words, and that it should be basically ignored when analyzing the meaning of the input. Note: commas do still have an effect on the conditioning, they in fact split sections between themselves, expecially for models that are trained over more verbose inputs. This is why you can use commas to separate different sections of your conditioning, like "a cat, a dog, a bird" and the model will hopefully generate an image that contains all three animals.
+But what exactly is a token? A token is generally a set of characters that the CLIP model has associated a meaning to. The most basic token you always use while writing a conditioning is the `,` comma. The CLIP model has been trained to understand that a comma is a separator between words and that it should be basically ignored when analyzing the meaning of the input.
+
+*Note: commas do still have an effect on the conditioning, they in fact split a conditioning prompt into sections, this is expecially true for models that are trained over more verbose inputs. This is why you can use commas to separate different sections of your conditioning, like "a cat, a dog, a bird" and the model will hopefully generate an image that contains all three animals.*
 
 ### "Clip Styles"
 
@@ -97,7 +100,7 @@ This always depends on the model you're using, and the best way to find out is t
 
 *What you don't want to see. More or less...*
 
-This is conditioning but in the opposite way. You can use it to tell the model what you don't want to see in the image or to steer it towards a specific style.
+This is conditioning but in the opposite (negative) way. You can use it to tell the model what you don't want to see in the image.
 
 Everything I said about conditioning applies to negative conditioning as well. Only that with negative conditioning the model will try to have the derived vectors from the tokens to be as distant as possible from the current latent image.
 
@@ -105,7 +108,7 @@ Everything I said about conditioning applies to negative conditioning as well. O
 
 Let's try to dispel some myths about negative conditioning:
 
-- `bad hands` doesn't works as well as you think. `bad` is a token and `hands` is another. The model doesn't have a clue about what `bad hands` are on their own. using `(hands)` will result in more or less the same reuslt, with 1 less token.
+- `bad hands` doesn't works as well as you think. `bad` is a token and `hands` is another. The model doesn't have a clue about what `bad hands` are on their own. using `(hands)` will result in more or less the same result, with 1 less token.
 - Longer conditioning prompts are not always better. If you exceed 75 tokens in your positive or negative token, the generation speed will almost halve itself because of the extra required processing (the model can only work with 75 tokens at the time, so it has to split the conditioning in chunks of 75 tokens and process them one by one). This is why you should try to keep your conditioning as short as possible.
 - A good way to fix this without exceeding the 75 tokens count is to use *embeddings*.
 
@@ -122,7 +125,7 @@ Embeddings are a way to condense a part of your conditioning into a single token
 ### Under the hood
 
 Imagine again the latent space, there are a bunch of zones (or layers) that define specific features, like the eyes, the nose, the mouth, the hair, the clothes, the background, etc.
-Embeddings are a way to tell the model "I want to see this in the image, and I want it to be as close as possible to these numbers". It does this by offsetting specific groups of values in the latent space.
+Embeddings are a way to tell the model "I want to see this in the image, and I want it to be as close as possible to these values". It does this by offsetting specific groups of values in the latent space.
 
 ### Embeddings in practice
 
@@ -144,7 +147,7 @@ LoRAs are a recetly introduced technique for fine-tuning a model on the fly, wit
 
 A model is basically a gigantic matrix of numbers. Fine tuning changes some of those numbers in the matrix to make the model better at generating images that are similar to the ones you used for fine tuning. By saving only the difference between the original model and the model after the fine tuning, a LoRA will be both small and fast to be applied. Also, you can easily apply multiple of them at the same time and they can work across multiple models (with some caveats, for example: a LoRA trained over anime Images will often not play nice with a model that tries to output photorealistic images).
 
-### Actual under the hood?
+### Actually how do they work under the hood?
 
 Nah. This is currently the easiest to understand explanation I can give you. I have a decent idea of how they work under the hood, but I do not think I can explain it in a way that is both easy to understand and accurate. So I'll not go into details for now.
 
@@ -168,11 +171,11 @@ Let's look at it step by step, or rather, node by node:
 
 1. The CheckpointLoader node loads the model and the associated CLIP model and if available a VAE model too.
 2. Two CLIPTextEncode nodes are used, one for supplying the positive conditioning and one for the negative conditioning. They both use the CLIP model loaded in the previous step and output a conditioning.
-3. An empty latent image is created at the specificed resolution.
-4. Both conditionings are supplied alongside the model and the empty latent image to the sampler, that actually adds noise and initializes the image and starts the generation process.
+3. An empty latent image is created at the specified resolution.
+4. Both conditionings are supplied alongside the model and the empty latent image to the sampler, which actually adds noise to the latter, then starts the generation process.
 5. A VAE gets loaded because we didn't have one before.
 6. the VAEDecode node takes the latent samples from the sampler and uses the VAE model to decode the latent samples into an image.
-7. Said image get's finally displayed as a preview (optionally also saved to the disk.)
+7. Said image gets finally displayed as a preview (optionally also saved to the disk.)
 
 ### Adding LoRAs to the mix
 
@@ -197,14 +200,14 @@ Here's how HiResFix looks like in a node based editor:
 
 Okay, this might look overwhelming at first, but it's actually pretty simple. Let's break it down:
 
-- The txt2img block (in blue) is the same as the one we saw before. The only difference is that we are using a 640x384 empty latent image instead of a 512x512 one. This is because twe will then upscale that to a factor of 2 to get a 1280x768 image at the end.
+- The txt2img block (in blue) is the same as the one we saw before. The only difference is that we are using a 640x384 empty latent image instead of a 512x512 one. This is because we will then upscale that to a factor of 2 to get a 1280x768 image at the end.
 
-- The yellow block is totally optional, just me fetching what the image looked like before going trough the HiResFix process.
+- The yellow block is totally optional, thats just me fetching what the image looked like before going trough the HiResFix process.
 
 - The green block is where the magic happens. 
   - The latent image resulting from the txt2img process is now sent trough a LatentUpscale node. 
-  - This node is going ot upscale the latent image by a factor of 2. This means that the 640x384 latent image will become a 1280x768 latent image. 
-  - We then feed this image to the sampler, wichi will add noise (notice the denoise parameter) and iterate over it. But because now it has a starting point (and the denoise value is not too high) it will just upscale the image and add detail instead of getting confused and spitting out 2 images one next to eachother.
+  - This node is going to upscale the latent image by a factor of 2. This means that the 640x384 latent image will become a 1280x768 latent image. 
+  - We then feed this image to the sampler, which will add noise (notice the denoise parameter) and iterate over it. But because now it has a starting point, and the denoise value is not too high, it will just upscale the image and add detail instead of getting confused and spitting out two images one next to eachother.
 - We then decode the image as usual and we get a nice 1280x768 image.
 
 Notice that some details changed. This is depending on the denoise value. You can thing of this as how much from 0 to 1 we are going to blur the image. If you set it to 0, the image will be exactly the same as the one we started with. If you set it to 1, the image will be completely blurred and we will end up with a completely new image. The sweet spot is somewhere in the middle, but it depends on the model and the image you are generating. Usually around 0.55-0.65 is where it works best.
@@ -215,12 +218,14 @@ And this goes to show that even though the node based enviroment is very powerfu
 
 ## The real downside of node based editors
 
-As soon as complexity kicks in, it becomes a rat's nest. It can become a nightmare to work with and you can end up with a lot of headaches when trying to understand why something doesn't work.
+As soon as complexity kicks in, it becomes a rats nest. It can quickly become a nightmare to work with nodes and you can end up with a lot of headaches when trying to understand why something doesn't work.
 
-But its a good way to play around with stuff and understand how it works internally. Also if you ever decide to work with it by using scripting, it will be really easy to reconstruct pipelines there.
+But its a good way to play around with stuff and understand how it works internally. Also, if you ever decide to work with it by using scripting, it will be really easy to reconstruct your pipelines there.
 
-And if you don't kn ow how to program, I guess is a good way to prototype a good pipeline or achieve results otherwise impossible with the standard UIs.
+And if you don't know how to program, I guess is a good way to prototype a good pipeline or achieve results otherwise impossible with the standard UIs.
 
 ## Conclusion
 
-This became a really long article. I hope you learned something from it. This has also been a good excuse for myself to go slightly deeper into how some stuff works internally. I'd love to expand on this in the future, maybe with another article about more advanced techniques on node based image generation, but for now I think this is enough. Till next time... have fun generating images!
+This became a really long article. I hope you learned something from it. This has also been a good excuse for myself to go slightly deeper into how some stuff works internally. I'd love to expand on this in the future, maybe with another article about more advanced techniques on node based image generation, upscaling techniques maybe? Img2img? Detail enhancement? But for now I think this is enough.
+
+Till next time... have fun generating images!
