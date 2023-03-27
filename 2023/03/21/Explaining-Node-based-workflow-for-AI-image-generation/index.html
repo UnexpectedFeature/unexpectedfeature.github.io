@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://unexpectedfeature.github.io/2023/03/21/Explaining-Node-based-workflow-for-AI-image-generation/NoHiResFix.png">
 <meta property="og:image" content="https://unexpectedfeature.github.io/2023/03/21/Explaining-Node-based-workflow-for-AI-image-generation/txt2imgHiresFix.png">
 <meta property="article:published_time" content="2023-03-21T01:35:04.000Z">
-<meta property="article:modified_time" content="2023-03-21T01:30:13.316Z">
+<meta property="article:modified_time" content="2023-03-27T13:31:40.599Z">
 <meta property="article:author" content="UnexpectedFeature">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="Stable Diffusion">
@@ -194,8 +194,7 @@
 <p><em>Note: commas do still have an effect on the conditioning, they in fact split a conditioning prompt into sections, this is expecially true for models that are trained over more verbose inputs. This is why you can use commas to separate different sections of your conditioning, like “a cat, a dog, a bird” and the model will hopefully generate an image that contains all three animals.</em></p>
 <h3 id="“Clip-Styles”"><a href="#“Clip-Styles”" class="headerlink" title="“Clip Styles”"></a>“Clip Styles”</h3><p><em>A “dialect” for models</em></p>
 <p>In-between quotes because I don’t really know what’s the correct lingo here.</p>
-<p>But, as every model ships with its CLIP model inside, some models require a different style of conditioning. For example, a lot of the anime models are trained to react to danbooru tags usd as conditioning. Describing a scene in natural language (as you would to a normal person) will still work but will not be as effective. Stable Diffusion model and a bunch of the photorealistic&#x2F;artistic models instead will not be really effective on danbooru tags, but will work better with natural language.</p>
-<p>This always depends on the model you’re using, and the best way to find out is to either read the readme left by the author, looking into the readmes for the models that the specific model derives from or just by experimenting.</p>
+<p>But, as every model ships with its CLIP model inside, some models require a different style of conditioning. For example, a lot of the anime models are trained to react to danbooru tags used as conditioning. Describing a scene in natural language (as you would to a normal person) will still work but will not be as effective. Stable Diffusion model and a bunch of the photorealistic&#x2F;artistic models instead will not be really effective on danbooru tags, but will work better with natural language.<br>This always depends on the model you’re using, and the best way to find out is to either read the readme left by the author, looking into the readmes for the models that the specific model derives from or just by experimenting.</p>
 <h2 id="Negative-Conditioning"><a href="#Negative-Conditioning" class="headerlink" title="Negative Conditioning:"></a><strong>Negative Conditioning:</strong></h2><p><em>What you don’t want to see. More or less…</em></p>
 <p>This is conditioning but in the opposite (negative) way. You can use it to tell the model what you don’t want to see in the image.</p>
 <p>Everything I said about conditioning applies to negative conditioning as well. Only that with negative conditioning the model will try to have the derived vectors from the tokens to be as distant as possible from the current latent image.</p>
@@ -210,7 +209,7 @@
 <p>Also called “Textual Inversion Embeddings”.</p>
 <p>Embeddings are a way to condense a part of your conditioning into a single token. They are not a collection of tokens per se, rather a definition of where your concept is placed in the latent space.</p>
 <h3 id="Under-the-hood"><a href="#Under-the-hood" class="headerlink" title="Under the hood"></a>Under the hood</h3><p>Imagine again the latent space, there are a bunch of zones (or layers) that define specific features, like the eyes, the nose, the mouth, the hair, the clothes, the background, etc.<br>Embeddings are a way to tell the model “I want to see this in the image, and I want it to be as close as possible to these values”. It does this by offsetting specific groups of values in the latent space.</p>
-<h3 id="Embeddings-in-practice"><a href="#Embeddings-in-practice" class="headerlink" title="Embeddings in practice"></a>Embeddings in practice</h3><p>The result is a quick way to only consume a single token and still have the same effect of a lof of tokens used as conditioning. They are now really popular in negative prompts to strongly condition the model away from <code>bad hands</code>, <code>bad anatomy</code>, <code>bad composition</code> and so on…</p>
+<h3 id="Embeddings-in-practice"><a href="#Embeddings-in-practice" class="headerlink" title="Embeddings in practice"></a>Embeddings in practice</h3><p>The result is a quick way to only consume a single token and still have the same effect of a lot of tokens used as conditioning. They are now really popular in negative prompts to strongly condition the model away from <code>bad hands</code>, <code>bad anatomy</code>, <code>bad composition</code> and so on…</p>
 <p>They can, of course, also be used as positive conditioning, but that job is often left to LoRAs nowadays.</p>
 <h2 id="LoRAs"><a href="#LoRAs" class="headerlink" title="LoRAs"></a><strong>LoRAs</strong></h2><p><em>Low-Rank Adaptations</em></p>
 <p><img src="/2023/03/21/Explaining-Node-based-workflow-for-AI-image-generation/LoRaNode.png" alt="LoRA Node"></p>
