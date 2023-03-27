@@ -6,6 +6,7 @@ tags:
   - Stable Diffusion
   - Machine Learning
   - Upscaling
+  - Art
 ---
 
 > **Disclaimer:** Everything described here has been done with authorization from the original artwork creator, including the pubblication of this article. The Original Artwork is presented here by curtesy of Pasix, the original creator. All rights are reserved to him.
@@ -72,8 +73,47 @@ Up to that point, I had invested "just" 3 hours into this. And the result that I
 
 At this point, this is already where I drew my conclusion that AI image generation can be a perfect tool for an artist instead of "putting them out of business". The result looks like it would be a perfect canvas for an artist to work over. You know, adding the "finishing touches".
 
-## The finishing touches
+## The "finishing touches"
 
 ### Jumping into the abyss
 
-Up to this exact moment, I wasn't really thinking about it.
+Up to this exact moment, I wasn't really thinking about it. This was a "quick upscale" project. But Pasix mentioned all the stuff that we could have fixed. 
+
+> Fine. This is going to be an article then.
+
+I asked Pasix if I could then publish the result and detail the procedure and after taking a moment to think about it... he gave me the go ahead and we agreed on a dual signature on the end result.
+And so it began...
+
+### Inpaint attempts
+
+The first thing that bothered basically both of us was the eyes. The right eye should have been white. It became a very light green-emerald color. And the pupil was not circular anymore. I started trying to use inpaint to fix it, but I quickly realized the model had no idea how a white eye should look like.
+
+![Eye inpaint attempt](EyeInpaint.png) _This is clearly not a white eye._
+
+It then struck me. AI is a tool, but I have multiple tools in my toolbox, and trying to tighten down a screw with an hammer, isn't exactly optimal, is it?
+
+### Photoshop Time
+
+I then plugged my graphic tablet, opened photoshop, and started fixing stuff.
+
+#### The white eye
+
+A simple desaturate masked over the pupil would do the trick to bring it down to white color, but the pupil was still not circular.
+
+![WhiteEyeMasked](WhiteEyeMask.png) _A little desaturation mask goes a long way._
+
+Add some smudge tool and a bit of blur, and we also get a nice rounded pupil.
+
+![Rounded Pupil](RoundedPupil.png)
+
+#### An artist request
+
+Pasix asked me to change the left eye color because, even if it was technically correct, it wasn't meant to be that shade originally. Maybe his monitor didn't have the best color calibration at the time of doing the painting, but oh well, easy fix there. 
+
+![Hue Fix](HueFix.png) _A simple HUE/Sat mask, wil fix the color issue easily_
+
+Iris was also looking a bit broken, so I worked on making it look more natural. Mainly a matter of painting some more streaks, blurring and smudging the previous ones and making sure everything looked natural.
+
+![Eyes After First Round Of Fixes](EyesAfterFirst.png) _The eyes after the first round of fixes._
+
+#### The face paint
