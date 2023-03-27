@@ -92,8 +92,7 @@ But what exactly is a token? A token is generally a set of characters that the C
 
 In-between quotes because I don't really know what's the correct lingo here.
 
-But, as every model ships with its CLIP model inside, some models require a different style of conditioning. For example, a lot of the anime models are trained to react to danbooru tags usd as conditioning. Describing a scene in natural language (as you would to a normal person) will still work but will not be as effective. Stable Diffusion model and a bunch of the photorealistic/artistic models instead will not be really effective on danbooru tags, but will work better with natural language.
-
+But, as every model ships with its CLIP model inside, some models require a different style of conditioning. For example, a lot of the anime models are trained to react to danbooru tags used as conditioning. Describing a scene in natural language (as you would to a normal person) will still work but will not be as effective. Stable Diffusion model and a bunch of the photorealistic/artistic models instead will not be really effective on danbooru tags, but will work better with natural language.
 This always depends on the model you're using, and the best way to find out is to either read the readme left by the author, looking into the readmes for the models that the specific model derives from or just by experimenting.
 
 ## **Negative Conditioning:**
@@ -129,7 +128,7 @@ Embeddings are a way to tell the model "I want to see this in the image, and I w
 
 ### Embeddings in practice
 
-The result is a quick way to only consume a single token and still have the same effect of a lof of tokens used as conditioning. They are now really popular in negative prompts to strongly condition the model away from `bad hands`, `bad anatomy`, `bad composition` and so on...
+The result is a quick way to only consume a single token and still have the same effect of a lot of tokens used as conditioning. They are now really popular in negative prompts to strongly condition the model away from `bad hands`, `bad anatomy`, `bad composition` and so on...
 
 They can, of course, also be used as positive conditioning, but that job is often left to LoRAs nowadays.
 
