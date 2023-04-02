@@ -162,3 +162,58 @@ A bit of feathering on an alpha mask to make it blend perfectly, and we were don
 
 Saved everything, and went to sleep.
 
+## The Actual Finishing touches
+
+### Scar details
+
+What does a california wildfire thermal satelite image to do with this picture? Eheh.
+If you noticed the current burn scar on the face doesn't really look like it's a proper burn scar. More like a bit of colored paint. I decided to fix that. I needed to blend in a bit of texture, so I got two of them.
+
+![Textures](textures.png) _On the left, a California's Wine country thermal satellite imagery of the 2017 wildfires. On the right a detail from a fake burn scar facepaint material._
+
+Using the fake burn scar material as a larger "break up the noise" texture blended on top of the california wildfire image that works perfect for adding some high frequency noise, we got this:
+
+![Enhanced Scar](EnhancedScar.png) _The burn scar after adding the two textures_
+
+I then adjusted color, saturation and contrast of the blending, plus darkened and blended the fake scar material texture into all the other scars in the face to add more detail.
+
+### Facepaint details
+
+The facepaint, even after all the texturing work, was looking a bit dull. Inspired from the work I had just done on the scar... I wanted to try the same on the facepaint too.
+
+![Facepaint](Facepaint.png) _Adding a brush streak greyscale image warped accordingly to detail the facepaint._
+
+I also did the same across all the other spots in the facepaint, and in the meanwhile we decided to add our own signatures on the image, leading to this:
+
+![Facepaint done!](FacepaintDone.png) _The facepaint after the detailing. Hair has also been improved by this time aswell._
+
+### Hair
+
+While I was doing the facepaint stuff I also worked on the hair. Unfortunately, I don't have a lot of images from the process... but it went something like this:
+
+- take the original pic
+- blend it with the upscaled version
+- make the face transparent
+- put it on the img2img and ask it to generate hair
+- rinse and repeat multiple times with the result until you get something that looks kinda okay.
+
+What I mean by kinda okay? This:
+![The picture that donated hairs](hairs.png) _The picture that donated hairs to our final one._
+
+The result has been blended on a layer on top of the upscaled image and the original image too.
+
+In the end the hair had a tiny bit too much color on the side, so I masked that and killed saturation.
+
+### Minor stuff
+
+There was, in the end a lenghty back and forth between me and Pasix about how to deal with some color grading stuff and general tiny adjustments. I won't go into details, but in short:
+
+- we adjusted the eye color balance
+- added a bit more redness to the lips
+- added blackness to the lip tattoo (that in the original image was supposed to be rings but eh... AI upgrades)
+- fixed overall image warmth and tone
+
+## The final result
+
+![Final Result](FinalResult.png) _[Full Resolution](FinalResult.png)_
+
