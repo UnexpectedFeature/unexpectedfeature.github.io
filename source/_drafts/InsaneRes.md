@@ -217,3 +217,11 @@ There was, in the end a lenghty back and forth between me and Pasix about how to
 
 ![Final Result](FinalResult.png) _[Full Resolution](FinalResult.png)_
 
+### Conclusion
+
+It's been a long journey. And I've learned some tricks.
+AI is a tool. One of the many tools in the artist toolbox, for what concernes me. I disagree with artists screaming that it is going to steal their jobs. Composition and what makes a great image is something that neither the AI, or the people who use it mindlessly, actually understand. On the other hand, I think that AI can be a great tool to actually help artists, speeding up their workflow and giving them the opportunity to just concentrate on the details. I think that the future of art is going to be a mix of AI and human creativity. And I can't wait to see what's going to come out of it.
+
+Well, what else can I say? I'm glad Pasix gave me this opportunity. Never would I've tought that an artist would have given me permission to play around whit his work and iterate over it. At the same time never would I tought that a tiny 430x430 pixels image could blow up into a 3072x3072 extremely detailed piece. And at the same time... I think I understood the real meaning of "AI Artist". Not someone that just writes a prompt, generated 100 pics and pick the best one. But someone that actually takes the time to understand the image, and doo what he can for enhancing or putting their own twist on it. The guidance from Pasix has been crucial into making the final result look as good as it does. It has been a joint effort, really and quite the process too.
+
+But well, we are done for now. Until next time, have fun making art, in whatever way you fancy!
