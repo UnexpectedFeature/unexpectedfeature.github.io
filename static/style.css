@@ -76,6 +76,12 @@ a {
 a:hover {
   color: var(--link-hover);
   border-bottom-color: var(--link-hover);
+  background: linear-gradient(90deg, var(--link-hover) 0%, var(--text) 50%, var(--link-hover) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: link-shine 3s ease-in-out infinite;
 }
 
 a:focus {
@@ -193,19 +199,13 @@ th {
 /* Header */
 header {
   max-width: var(--max-width);
-  margin: 0 auto 2rem;
+  margin: 1.5rem auto 2rem;
   padding: 0 var(--spacing);
 }
 
 header h1 {
   margin: 0;
   font-size: 1.4rem;
-}
-
-header .author {
-  margin: 0.25rem 0 0;
-  font-size: 0.85rem;
-  color: var(--text-muted);
 }
 
 header h1 a {
@@ -215,6 +215,57 @@ header h1 a {
 
 header h1 a:hover {
   color: var(--text);
+}
+
+header h1.logo {
+  font-size: 1.75rem;
+}
+
+header h1.logo a {
+  display: inline;
+  color: var(--text);
+  border: none;
+  text-decoration: none;
+}
+
+header h1.logo a:hover {
+  color: var(--text);
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: unset;
+  animation: none;
+}
+
+header h1.logo .un {
+  text-decoration: line-through;
+  color: #888 !important;
+}
+
+header h1.logo .expected {
+  color: #666 !important;
+  text-decoration: underline;
+}
+
+header h1.logo .feature {
+  color: #2bbc8a !important;
+  position: relative;
+  background: linear-gradient(90deg, #2bbc8a 0%, #5eead4 50%, #2bbc8a 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 6s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes link-shine {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 header nav#nav {
@@ -240,6 +291,11 @@ header nav#nav a {
 
 header nav#nav a:hover {
   color: var(--text);
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: unset;
+  animation: none;
 }
 
 header nav#nav .icon {
@@ -325,10 +381,15 @@ footer#footer a {
   color: var(--text-muted);
   text-decoration: underline;
   background-image: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: unset;
+  animation: none;
 }
 
 footer#footer a:hover {
   color: #ccc;
+  background: none;
 }
 
 footer#footer .footer-left {
@@ -379,12 +440,19 @@ footer#footer .footer-left {
 }
 
 .post-list .post-title a {
-  color: var(--text);
+  color: var(--post-accent, var(--text));
   border: none;
 }
 
 .post-list .post-title a:hover {
-  color: var(--accent);
+  color: var(--post-accent);
+  background: linear-gradient(90deg, var(--post-accent) 0%, var(--text) 50%, var(--post-accent) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: link-shine 3s ease-in-out infinite;
+  border: none;
 }
 
 .post-list .post-meta {
@@ -407,6 +475,11 @@ footer#footer .footer-left {
 .post-list .post-meta a[data-tag-color]:hover {
   background: var(--tag-bg);
   filter: brightness(1);
+  background-image: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: unset;
+  animation: none;
 }
 
 /* Single Post */
@@ -417,6 +490,22 @@ article.post {
 article.post .post-title {
   font-size: 1.75rem;
   margin: 0 0 0.5rem;
+}
+
+article.post .post-title a {
+  color: var(--post-accent);
+  border: none;
+}
+
+article.post .post-title a:hover {
+  color: var(--post-accent);
+  background: linear-gradient(90deg, var(--post-accent) 0%, var(--text) 50%, var(--post-accent) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: link-shine 3s ease-in-out infinite;
+  border: none;
 }
 
 article.post .post-meta {
@@ -445,6 +534,11 @@ article.post .post-tags a:hover {
   background: var(--tag-bg, var(--accent));
   filter: brightness(1);
   color: #fff;
+  background-image: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: unset;
+  animation: none;
 }
 
 /* Tag/Category Lists */

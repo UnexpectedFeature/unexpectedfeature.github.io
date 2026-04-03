@@ -13,7 +13,7 @@
     {{ end }}
     <li>
       <div class="post-title">
-        <a href="{{ .RelPermalink }}" {{ with $postAccent }}style="color: {{ . }};"{{ end }}>{{ .Title }}</a>
+        <a href="{{ .RelPermalink }}" {{ with $postAccent }}style="--post-accent: {{ . }};"{{ end }}>{{ .Title }}</a>
       </div>
       <div class="post-meta">
         <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>

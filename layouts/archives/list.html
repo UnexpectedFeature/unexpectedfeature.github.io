@@ -9,9 +9,17 @@
         <h3>{{ .Key }}</h3>
         <ul class="post-list">
           {{ range .Pages.ByDate.Reverse }}
+          {{ $postAccent := $.Site.Params.accent }}
+          {{ with .Params.tags }}
+            {{ with index . 0 }}
+              {{ with index $.Site.Params.tagColors . }}
+                {{ $postAccent = . }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
           <li>
             <div class="post-title">
-              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              <a href="{{ .RelPermalink }}" {{ with $postAccent }}style="--post-accent: {{ . }};"{{ end }}>{{ .Title }}</a>
               <span class="post-date">{{ .Date.Format "Jan 2" }}</span>
             </div>
           </li>
