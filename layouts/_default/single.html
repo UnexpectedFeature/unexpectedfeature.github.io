@@ -1,0 +1,47 @@
+{{ define "main" }}
+<article class="post">
+  {{/* Page accent color from first tag */}}
+  {{ $accent := .Site.Params.accent }}
+  {{ with .Params.tags }}
+    {{ with index . 0 }}
+      {{ with index $.Site.Params.tagColors . }}
+        {{ $accent = . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  <style>:root { --accent: {{ $accent }}; }</style>
+  
+  <h1 class="post-title">{{ .Title }}</h1>
+  <div class="post-meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+    {{ with .Params.author }}
+      <span class="separator">|</span>
+      {{ $author := . }}
+      {{ $url := "" }}
+      {{ if eq $author "MrFastwind" }}{{ $url = "https://github.com/MrFastwind" }}
+      {{ else if eq $author "Samuele Lorefice" }}{{ $url = "https://github.com/SamueleLorefice" }}
+      {{ else if eq $author "Doksperiments" }}{{ $url = "https://github.com/Doksperiments" }}
+      {{ end }}
+      {{ with $url }}<a href="{{ $url }}" class="author">{{ $author }}</a>{{ else }}{{ $author }}{{ end }}
+    {{ end }}
+  </div>
+  <div class="content">
+    {{ .Content }}
+  </div>
+  {{ with .Params.tags }}
+  <div class="post-tags">
+    {{ range . }}
+      {{ $tagColor := "" }}
+      {{ with index $.Site.Params.tagColors . }}
+        {{ $tagColor = . }}
+      {{ end }}
+      <a href="/tags/{{ . | urlize }}/" 
+         {{ with $tagColor }}style="--tag-bg: {{ . }};"{{ end }}
+         {{ with $tagColor }}data-tag-color{{ end }}>
+        #{{ . }}
+      </a>
+    {{ end }}
+  </div>
+  {{ end }}
+</article>
+{{ end }}

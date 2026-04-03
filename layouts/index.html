@@ -1,0 +1,44 @@
+{{ define "main" }}
+<section class="home">
+  <h2>Recent Posts</h2>
+  <ul class="post-list">
+    {{ range first 10 (where .Site.RegularPages "Type" "in" "posts") }}
+    {{ $postAccent := $.Site.Params.accent }}
+    {{ with .Params.tags }}
+      {{ with index . 0 }}
+        {{ with index $.Site.Params.tagColors . }}
+          {{ $postAccent = . }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    <li>
+      <div class="post-title">
+        <a href="{{ .RelPermalink }}" {{ with $postAccent }}style="color: {{ . }};"{{ end }}>{{ .Title }}</a>
+      </div>
+      <div class="post-meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+        {{ with .Params.tags }}
+          <span class="separator">|</span>
+          {{ range first 3 . }}
+            {{ $tagColor := "" }}
+            {{ with index $.Site.Params.tagColors . }}
+              {{ $tagColor = . }}
+            {{ end }}
+            <a href="/tags/{{ . | urlize }}/"
+               {{ with $tagColor }}style="--tag-bg: {{ . }};"{{ end }}
+               {{ with $tagColor }}data-tag-color{{ end }}>
+              #{{ . }}
+            </a>
+          {{ end }}
+        {{ end }}
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+  
+  <div class="home-links">
+    <a href="/posts/">View all posts</a> &bull; 
+    <a href="/tags/">Browse by tags</a>
+  </div>
+</section>
+{{ end }}

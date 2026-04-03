@@ -1,0 +1,20 @@
+{{ define "main" }}
+<section>
+  {{ if .Title }}<h2>{{ .Title }}</h2>{{ end }}
+  {{ range .Data.Pages.GroupByDate "2006" }}
+  <div class="archive-year">
+    <h3>{{ .Key }}</h3>
+    <ul class="post-list">
+      {{ range .Pages.ByDate.Reverse }}
+      <li>
+        <div class="post-title">
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          <span class="post-date">{{ .Date.Format "Jan 2" }}</span>
+        </div>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+</section>
+{{ end }}

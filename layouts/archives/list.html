@@ -1,0 +1,26 @@
+{{ define "main" }}
+<section>
+  <h2>Writing</h2>
+  
+  {{ $pages := where .Site.RegularPages "Section" "posts" }}
+  {{ if gt (len $pages) 0 }}
+    {{ range $pages.GroupByDate "2006" }}
+      <div class="archive-year">
+        <h3>{{ .Key }}</h3>
+        <ul class="post-list">
+          {{ range .Pages.ByDate.Reverse }}
+          <li>
+            <div class="post-title">
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              <span class="post-date">{{ .Date.Format "Jan 2" }}</span>
+            </div>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+    {{ end }}
+  {{ else }}
+    <p>No posts yet.</p>
+  {{ end }}
+</section>
+{{ end }}

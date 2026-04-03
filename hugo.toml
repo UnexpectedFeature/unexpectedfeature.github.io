@@ -1,0 +1,31 @@
+baseURL = 'https://unexpectedfeature.github.io'
+title = 'UnexpectedFeature'
+
+[markup]
+  [markup.highlight]
+    style = 'monokai'
+
+[params]
+  # Site author (shown in header)
+  author = 'UnexpectedFeature'
+  
+  # Default accent color (used when no tag matches)
+  accent = '#2bbc8a'
+  
+  # Tag-based accent colors - each tag has a unique color
+  # Format: "Tag Name" = "hex color"
+  [params.tagColors]
+    "AI" = "#a855f7"              # Purple
+    "Machine Learning" = "#8b5cf6" # Violet
+    "Stable Diffusion" = "#c084fc" # Light Purple
+    "Networking" = "#14b8a6"      # Teal
+    "LAN" = "#2dd4bf"              # Light Teal
+    "blog" = "#06b6d4"             # Cyan
+    "static-site-generator" = "#0ea5e9"  # Sky Blue
+    "hugo" = "#f87171"             # Red
+    "migration" = "#ef4444"        # Red-Orange
+    "Upscaling" = "#6366f1"        # Indigo
+    "Art" = "#ec4899"              # Pink
+    "Game Engine" = "#f59e0b"      # Amber
+    "CLI" = "#84cc16"              # Lime
+    "C#" = "#22c55e"               # Green

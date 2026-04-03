@@ -1,0 +1,18 @@
+{{ define "main" }}
+<section>
+  <h2>{{ .Title }}</h2>
+  <p class="text-muted">Showing posts tagged with "{{ .Title }}"</p>
+  <ul class="post-list">
+    {{ range .Pages }}
+    <li>
+      <div class="post-title">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </div>
+      <div class="post-meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}
