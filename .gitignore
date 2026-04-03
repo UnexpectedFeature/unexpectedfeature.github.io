@@ -1,20 +1,17 @@
-## Hexo Server
-
-.DS_Store
-Thumbs.db
-db.json
-*.log
-node_modules/
+## Hugo
 public/
-.deploy*/
+.hugo_build.lock
+resources/
 
 ## IDEs
-
 .vscode/
 .vim
 
-## Temporary Files
+## OS
+.DS_Store
+Thumbs.db
+
+## Temp
 *~
 *.swp
 *.swo
-yarn.lock

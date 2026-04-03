@@ -85,8 +85,7 @@ a:hover {
 }
 
 a:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: none;
 }
 
 /* Headings */
@@ -238,12 +237,12 @@ header h1.logo a:hover {
 }
 
 header h1.logo .un {
-  text-decoration: line-through;
-  color: #888 !important;
+  color: var(--text-muted);
+  text-decoration: underline;
 }
 
 header h1.logo .expected {
-  color: #666 !important;
+  color: var(--text-muted);
   text-decoration: underline;
 }
 
@@ -442,10 +441,12 @@ footer#footer .footer-left {
 .post-list .post-title a {
   color: var(--post-accent, var(--text));
   border: none;
+  text-decoration: none;
 }
 
 .post-list .post-title a:hover {
   color: var(--post-accent);
+  text-decoration: underline;
   background: linear-gradient(90deg, var(--post-accent) 0%, var(--text) 50%, var(--post-accent) 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
@@ -495,10 +496,12 @@ article.post .post-title {
 article.post .post-title a {
   color: var(--post-accent);
   border: none;
+  text-decoration: none;
 }
 
 article.post .post-title a:hover {
   color: var(--post-accent);
+  text-decoration: underline;
   background: linear-gradient(90deg, var(--post-accent) 0%, var(--text) 50%, var(--post-accent) 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
